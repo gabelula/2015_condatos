@@ -1,0 +1,13 @@
+#proceso ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+#proceso ul li {
+  display: inline;
+}
+
+.romanos ul {
+  list-style-type: upper-roman;
+}

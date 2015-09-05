@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Estándar de Datos para las Contrataciones Abiertas en la Ciudad de México</title>
+
+		<meta name="description" content="Estándar de Datos para las Contrataciones Abiertas">
+		<meta name="author" content="Gabriela Rodríguez">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/ocds.css" id="theme">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Estándar de Datos para las</h1>
+					<h1>Contrataciones Abiertas</h1>
+					<small>Por Gabriela Rodriguez / DATA Uruguay</small>
+				</section>
+
+				<section>
+					<h2>Proceso de contratación</h1>
+						<div  id="proceso">
+						<ul>
+							<li>
+								<img src="images/planning.png" style="width: 160px; height: 160px; border: 0px none; margin: 5px;">
+							</li>
+							<li>
+								<img src="images/tendering.png" style="width: 160px; height: 160px; border: 0px none; margin: 5px;">
+							</li>
+							<li>
+								<img src="images/awarded.png" style="width: 160px; height: 160px; border: 0px none; margin: 5px;">
+							</li>
+							<li>
+								<img src="images/contract.png" style="width: 160px; height: 160px; border: 0px none; margin: 5px;">
+							</li>
+							<li>
+								<img src="images/implementation.png" style="width: 160px; height: 160px; border: 0px none; margin: 5px;">
+							</li>
+						</ul>
+						<ul style="font-size: 30px;">
+							<li>Planificación -> </li>
+							<li>Licitación -> </li>
+							<li>Adjudicación -> </li>
+							<li>Contratos -> </li>
+							<li>Implementación</li>
+						</ul>
+					</div>
+					<aside class="notes">
+						. El estandar describe como liberar documentos y datos para todas las etapas del proceso de contratación.
+						. Publicaciones de estándar contiene:
+						  .. documentos y avisos sobre licitaciones, extensiones, adjudicaciones, contratos
+							.. identificadores de compradores y proveedores
+							.. fechas claves y duración de contratos
+							.. valor de las contrataciones y transacciones
+							.. objeto de las mismas
+						. Para empezar el trabajo de aplicación del estandar
+						  .. mirar lo que ya se tiene y se puede publicar
+							.. enfocarse en los campos principales
+							.. empezar en pequeño y escalar
+					</aside>
+				</section>
+
+				<section>
+					<h3>¿Como se implementa el estándar de  datos de contrataciones abiertas?</h3>
+					<ul class="romanos">
+						<li>Publicar información básica en la web.</li>
+						<li>Publicar datos en formatos leibles por máquina.</li>
+						<li>Estructurar datos usando estándar.</li>
+						<li>Usar buenas practicas para publicar datos abiertos en la web.</li>
+						<li>Enlazar a otros conjuntos de datos.</li>
+					</ul>
+					<aside class="notes">
+						. Compartir documenots para cada etapa del proceso
+						  .. planes de compra
+						  .. llamados a licitacion
+						  .. especificaciones tecnicas
+						  .. aviso de adjudicacion
+						  .. contratos firmados
+						. Procesar los datos para que sean accesibles, buscables, combinables.
+						. Usando el esquema de JSON del estándar, publicar releases.
+						. Cada publicación tiene su propia URI y es persistente
+					</aside>
+				</section>
+
+				<section>
+					<h1>Release Package</h1>
+					<h3>Publicación con varios releases juntos.</h3>
+					<ul>
+						<li>Un release es un archivo de publicación sobre un proceso de contratación.</li>
+						<li>Es deseable que se publique lo más frecuente como sea posible. Tendremos muchos releases para un proceso de contratación que van a ser un historial de cambios del mismo.</li>
+						<li>Release package es un conjunto de releases.</li>
+					</ul>
+					<aside class="notes">
+						. Un release es un archivo de publicación sobre un proceso de contratación. Puede ser en la etapa de planificación, llamado a licitación, contratación o ejecución.
+						. Practicas de publicación
+							. publicar tan frecuente como sea posible
+						. en el caso mexicano
+							. liberar releases una vez por mes
+							. liberar un release package una vez por trimestre
+						. pregunta sobre frecuencia de publicación
+					</aside>
+				</section>
+
+				<section>
+					<h1>Release Package</h1>
+					<h3>Archivo con varios releases juntos.</h3>
+					<pre><code data-trim>
+{
+  "uri": "URI donde se publica.",
+  "publishedDate": "2015-04-15T12:35:06",
+  "publisher": {
+      "name": "Nombre de quien pública. String",
+      "uri": "https://www.df.gob.mx/contratos"
+  },
+  "releases": [],
+  "license": "https://www.df.gob.mx/licencia-de-datos-abiertos",
+  "publicationPolicy": "https://www.df.gob.mx/politica-de-publicacion"
+}
+					</code></pre>
+					<aside class="notes">
+						. Requeridos, uri, publishedDate, releases, publisher y publisher name
+						. Sobre Licencias. Publicar datos de contratación con licencias libres es muy importante en el proceso de contratación abierta. La licencia especifica como los usuarios pueden acceder, usar y re-usar los datos.
+						.. dominio publico
+						.. por atribución (uso y reuso atribuyendo la fuente)
+						.. si se usan licencias propias, confirmar que sean compatibles con la definición de licencia libre. http://opendefinition.org/licenses/
+						. Sobre politicas de publicación. Información sobre porque se publican estos datos y no otros. Que campos se excluyen por temas de privacidad u otros.
+						.. quien es responsable por la publicación de estos datos. Información de contacto.
+						.. como son los datos generados y que tan frecuentemente. Información de los sistemas que se utilizan.
+						.. información sobre códigos que se utilizen
+						.. Planes futuros de desarrollo
+					</aside>
+				</section>
+
+				<section>
+					<h1>Release</h1>
+					<h3></h3>
+					<pre><code data-trim>
+{
+		"ocid": "Identificador global del proceso de contratación",
+		"id": "1",
+		"date": "2015-04-15T00:00:00",
+		"tag": "contract",
+		"initiationType": "tender",
+		"planning": {},
+		"tender": {},
+		"buyer": {},
+		"awards": [],
+		"contracts": [],
+		"language": "es"
+}
+					</code></pre>
+					<aside class="notes">
+						. ocid - identificador global para el proceso de contratación. Para Mexico OCDS-87SD3T-{identificador-local}
+						.. pregunta: como pueden crear los identificadores OCID?
+						. campo id
+						. tag -> planning tender tenderAmendment tenderUpdate tenderCancellation award awardUpdate awardCancellation contract contractUpdate contractAmendment implementation implementationUpdate contractTermination compiled
+						. initiationType: siempre 'tender'
+					</aside>
+				</section>
+
+				<section>
+					<h1>Identificadores</h1>
+					<h3>pegamento del proceso de contratación</h3>
+					<p>
+						OCID es un identificador global único usado en cada 'release' para identificar el proceso de contratación.
+					</p>
+					<p>
+						<b>ocds-{prefijo}-{organismo publicador}-{identificador interno}</b>
+						<ul>
+							<li>Prefijo 'OCDS'</li>
+							<li>Prefijo único registrado en la alianza para ciudad/país.</li>
+							<li>Un nombre para el organismo que publica.</li>
+							<li>Un identificador interno que se crea en el sistema usado e identificar el proceso de contratación en todas sus etapas.</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+				  <h3>Puntos Importantes que resolver</h3>
+					<ul>
+						<li>Campos e identificadores: que publicar y como identificarlos consistentemente.</li>
+						<li>Patrones de Publicación: usabilidad y frecuencia.</li>
+						<li>Formatos de Publicación: esquema JSON, XLS, CSV.</li>
+						<li>Mapeo de las diferentes fuentes de datos existentes.</li>
+						<li>Es necesario extender el estándar para incluir algún caso de uso no considerado.</li>
+						<li>Entender las necesidades de los usuarios de estos datos y que pueden aportar a la implementación.</li>
+						<li>Usar herramientas para validar datos.</li>
+						<li>Publicar y buscar mejoras.</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Documentación en <a href="http://ocds.open-contracting.org">http://ocds.open-contracting.org</a></p>
+					<p>Discusiones de desarrollo en lista de correo standard-discuss@open-contracting.org y <a href="https://github.com/open-contracting/standard/issues">https://github.com/open-contracting/standard/issues</a></p>
+					<small>
+						Presentación : <a href="http://gabelula.github.io/2015_condatos/ocds/">http://gabelula.github.io/2015_condatos/ocds/</a>
+					</small><br>
+					<small>Mesa de ayuda : data@open-contracting.org</small><br>
+					<small>Contacto: Gabriela Rodriguez [ gaba@datauy.org ] </small>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
